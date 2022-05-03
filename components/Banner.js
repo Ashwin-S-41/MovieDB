@@ -22,7 +22,7 @@ const Banner = ({results}) => {
         className="rounded-2xl"
       >
         {results.map((result) => (
-          <div className=" rounded-2xl h-44 md:h-96 ">
+          <div className=" rounded-2xl h-44 md:h-96 " key={result.id}>
 
             <Image src={`${BASE_URL}${result.backdrop_path}`} width={1080}
             height={608}
