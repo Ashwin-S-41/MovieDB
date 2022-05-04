@@ -24,6 +24,7 @@ const Banner = ({results}) => {
       >
         {results.map((result) => (
           <div onClick={() => router.push(`/${result.media_type}/${result.id}`)} key={result.id} className=" relative rounded-2xl h-46 md:h-96 ">
+          
 
             <Image src={`${BASE_URL}${result.backdrop_path||result.poster_path}`} width={1080}
             height={608}
