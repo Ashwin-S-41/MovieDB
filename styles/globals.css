@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.flicker {
+  -webkit-transform:translate3d(-50%,0,0);
+}
+
 @layer base {
   body {
     @apply font-poppins;
@@ -17,4 +21,5 @@
   .sidebarlg {
     @apply flex-row ;
   }
+  
 }
