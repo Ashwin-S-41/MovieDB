@@ -28,6 +28,7 @@ const Banner = ({results}) => {
 
             <Image src={`${BASE_URL}${result.backdrop_path||result.poster_path}`} width={1080}
             height={608}
+            alt={result.title}
             objectFit="cover"
             className="rounded-xl   overflow-hidden" />
               

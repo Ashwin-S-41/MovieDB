@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const SideBar = ({active}) => {
   const router = useRouter()
   return (
-    <div className=" bg-white w-full mb-10 fixed z-20 top-0 left-0 p-2 ">
+    <div className=" bg-white w-full mb-10 fixed z-50 top-0 left-0 p-2 ">
       <div className="bg-[#f1f1fb] py-4 px-4 pr-10 items-center justify-between w-full  rounded-md flex ">
         <div className="text-transparent cursor-pointer bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-indigo-500 font-soft font-black text-2xl"
           onClick={() => router.push(`/`)}

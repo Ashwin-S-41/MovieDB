@@ -14,6 +14,7 @@ const MovieCard = ({results}) => {
           
           `${BASE_URL}${results.poster_path}`
         }
+        alt={results.title}
         width={170}
         height={420}
         
