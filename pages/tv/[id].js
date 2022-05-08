@@ -5,6 +5,7 @@ import SideBar from '../../components/SideBar'
 
  function Show({result,similarResult}) {
     const BASE_URL = "https://image.tmdb.org/t/p/w500";
+    console.log(similarResult)
   return (
     <div className="flex-col h-full w-full mt-24 lg:sidebarlg ">
         <SideBar/>
@@ -19,9 +20,9 @@ import SideBar from '../../components/SideBar'
                         <div className="text-sm text-center text-gray-700">Rating : {result.vote_average}/10 </div>
                         <p className="text-xs text-gray-500 md:text-sm">
                             {result.release_date || result.first_air_date} •{" "}
-                            {Math.floor(result.runtime / 60)}h {result.runtime % 60}m 
+                            {Math.floor(result.episode_run_time[0] / 60)}h {result.episode_run_time[0] % 60}m 
                         </p>
-                        <p className="text-sm text-gray-500 text-center">{result.genres.map((genre) => genre.name + " • ")}</p>
+                        <div className="text-sm text-gray-500 text-center">TV Show{result.genres.map((genre) =>" • "+ genre.name  )}</div>
                 </div>
             </div>
                 <div className="flex flex-col items-center m-4 ">
@@ -43,7 +44,7 @@ export async function getServerSideProps(context) {
     ).then((response) => response.json());
 
     const similarrequest = await fetch(
-        `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${process.env.API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/tv/${id}/similar?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=G&language=en-US&page=1&include_adult=false`
       ).then((response) => response.json());
     return {
       props: {

@@ -31,7 +31,7 @@ const Banner = ({results}) => {
             objectFit="cover"
             className="rounded-xl   overflow-hidden" />
               
-             <div className=" flicker text-center z-10 backface text-xs lg:text-lg px-3 py-2 rounded-xl w-fit absolute text-yellow-100 bottom-[11%] -translate-x-1/2 left-[50%] 
+             <div className="flicker cursor-pointer flicker text-center z-10 backface text-xs lg:text-lg px-3 py-2 rounded-xl w-fit absolute text-yellow-100 bottom-[11%] !-translate-x-1/2 left-[50%] 
                 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-90 mr-2  border-[0px] border-gray-400
              ">{result.name||result.original_name||result.title||result.original_title}</div>
           </div>

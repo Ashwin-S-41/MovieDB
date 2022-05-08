@@ -6,6 +6,7 @@ import SideBar from '../../components/SideBar'
 function Movie({result,similarResult}) {
     const BASE_URL = "https://image.tmdb.org/t/p/w500";
     
+    
   return (
     <div className="flex-col h-full w-full mt-24 lg:sidebarlg ">
         <SideBar/>
@@ -22,7 +23,7 @@ function Movie({result,similarResult}) {
                             {result.release_date || result.first_air_date} •{" "}
                             {Math.floor(result.runtime / 60)}h {result.runtime % 60}m 
                         </p>
-                        <p className="text-sm text-gray-500 text-center">{result.genres.map((genre) => genre.name + " • ")}</p>
+                        <p className="text-sm text-gray-500 text-center">Movie{result.genres.map((genre) =>" • "+ genre.name  )}</p>
                 </div>
             </div>
                 <div className="flex flex-col items-center m-4 ">
@@ -44,7 +45,7 @@ export async function getServerSideProps(context) {
     ).then((response) => response.json());
 
     const similarrequest = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=G&language=en-US&include_adult=false&page=1`
       ).then((response) => response.json());
     return {
       props: {

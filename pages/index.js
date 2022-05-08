@@ -8,19 +8,19 @@ import SideBar from "../components/SideBar";
 
 
 
-export default function Home({popularMovies,popularShows,top_ratedMovies,top_ratedShows,trending}) {
+export default function Home({popularMovies,popularShows,top_ratedMovies,top_ratedShows,latestMovies,latestShows,trending}) {
   const [isActive, setisActive] = useState(false);
-  console.log(trending)
+  console.log(latestMovies)
   {JSON.stringify(isActive)}
   
   return (
     <div className="flex-col h-full w-full mt-24 lg:sidebarlg ">
-        <SideBar/>
+        <SideBar active="home"/>
 
         <div className="bg-[#f1f1fb] w-[100%-4px]  space-x-4 rounded-md m-2 p-4 h-[80vh] overflow-hidden overflow-y-scroll scrollbar-hide  flex ">
           <div className=" w-full flex-col items-center justify-center">
            
-          <div className="flex w-full justify-evenly space-x-4 bg-[#494953] p-1.5  rounded-2xl  ">
+          <div className="flicker flex w-full justify-evenly space-x-4 bg-[#494953] p-1.5  rounded-2xl  ">
                     <div onClick={() => setisActive(false)} className={`
                      lg:text-sm
                      md:text-sm
@@ -41,7 +41,13 @@ export default function Home({popularMovies,popularShows,top_ratedMovies,top_rat
   
     
           <Banner results={trending} />
-          
+          {isActive==false?
+            <MovieCollection results={latestMovies} title={"Latest Movies"} />
+            
+            :
+            <ShowCollection results={latestShows} title={"Latest TV Shows"} />
+            
+          }
 
           {isActive==false?
             <MovieCollection results={popularMovies} title={"Popular Movies"} />
@@ -58,13 +64,7 @@ export default function Home({popularMovies,popularShows,top_ratedMovies,top_rat
             
           }
           
-          {/* {isActive==false?
-            <Upcoming results={upcomingMovies} title={"Upcoming Movies"} />
-            
-            :
-            <Upcoming results={upcomingShows} title={"Upcoming TV Shows"} />
-            
-          } */}
+          
             
           
           
@@ -85,6 +85,8 @@ export async function getServerSideProps() {
       popularShowsRes,
       top_ratedMoviesRes,
       top_ratedShowsRes,
+      latestMoviesRes,
+      latestShowsRes,
       
       trendingRes,
       
@@ -92,32 +94,39 @@ export async function getServerSideProps() {
     ] = await Promise.all([
        
       fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=2`
+        `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=PG-13&language=en-US&page=2`
       ),
       fetch(
-        `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=PG-13&language=en-US&page=2`
+      ),
+    
+      fetch(
+        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=PG-13&language=en-US&page=1`
+      ),
+      fetch(
+        `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=PG-13&language=en-US&page=1`
+      ),
+      fetch(
+        `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=PG-13&language=en-US&primary_release_year=2022&include_adult=false`
+      ),
+      fetch(
+        `https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=PG-13&language=en-US&primary_release_year=2022&include_adult=false`
       ),
       
       fetch(
-        `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=1`
-      ),
-      fetch(
-        `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=1`
-      ),
-      
-      fetch(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.API_KEY}`
+        `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.API_KEY}&certification_country=US&certification.lte=PG-13`
       ),
       
       
     ]);
-    const [popularMovies,popularShows,top_ratedMovies,top_ratedShows,trending] =
+    const [popularMovies,popularShows,top_ratedMovies,top_ratedShows,latestMovies,latestShows,trending] =
       await Promise.all([
         popularMoviesRes.json(),
         popularShowsRes.json(),
         top_ratedMoviesRes.json(),
         top_ratedShowsRes.json(),
-        
+        latestMoviesRes.json(),
+        latestShowsRes.json(),
         trendingRes.json(),
         
         
@@ -130,7 +139,8 @@ export async function getServerSideProps() {
         popularShows: popularShows.results,
         top_ratedMovies: top_ratedMovies.results,
         top_ratedShows: top_ratedShows.results,
-        
+        latestMovies: latestMovies.results,
+        latestShows: latestShows.results,
         trending: trending.results,
         
         
@@ -138,6 +148,7 @@ export async function getServerSideProps() {
     };
   }
 
+  //https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&primary_release_year=2024&include_adult=false
 
 // export async function getServerSideProps() {
   

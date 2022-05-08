@@ -5,7 +5,7 @@ import React from 'react'
 const About = () => {
   return (
     <div>
-      <SideBar/>
+      <SideBar active="about"/>
       <div className="mt-20">About</div>
     </div>
   )
