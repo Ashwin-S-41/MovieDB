@@ -6,7 +6,7 @@ const MovieCard = ({results}) => {
     const router = useRouter();
   return (
     <div
-      className="flex relative  mb-8 bg-black min-w-[170px] h-[240px] md:min-w-[150px] md:min-h-[200px] rounded-lg overflow-hidden cursor-pointer group  "
+      className="flex relative  mb-4 bg-black min-w-[170px] h-[240px] md:min-w-[150px] md:min-h-[200px] rounded-lg overflow-hidden cursor-pointer group  "
       onClick={() => router.push(`/movie/${results.id}`)}
     >
       <Image

@@ -13,6 +13,7 @@
   will-change: top;
 }
 
+
 @layer base {
   body {
     @apply font-poppins;
@@ -20,10 +21,22 @@
 }
 
 @layer components {
-  .redtest {
-    @apply text-red-400;
-  }
+  /* sidebar */
   .sidebarlg {
-    @apply flex-row;
+    @apply w-[18%] h-[100vh] mb-0 block mt-2  p-0 pl-2 pb-3;
+  }
+  .logolg{
+    @apply flex-col h-[99%] justify-start ;
+  }
+  .optionslg {
+    @apply flex-col justify-center space-x-0 space-y-2  mt-10;
+  }
+  .optionlg {
+    @apply w-full;
+  }
+
+  /* Hero */
+  .herolg {
+    @apply h-[97%] w-[80%] ml-[19%] mt-2 items-start justify-start fixed;
   }
 }

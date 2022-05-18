@@ -19,7 +19,8 @@ const Banner = ({results}) => {
         showIndicators={false}
         showThumbs={false}
         showArrows={true}
-        interval={5000}
+        interval={3000}
+        
         className="rounded-2xl"
       >
         {results.map((result) => (
@@ -29,6 +30,7 @@ const Banner = ({results}) => {
             <Image src={`${BASE_URL}${result.backdrop_path||result.poster_path}`} width={1080}
             height={608}
             alt={result.title}
+            loading="eager"
             objectFit="cover"
             className="rounded-xl   overflow-hidden" />
               

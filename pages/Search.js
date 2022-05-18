@@ -32,15 +32,15 @@ const Search = () => {
   return (
     <div >
       <SideBar active={"search"}/>
-      <div className="mt-24 bg-[#f1f1fb]  flex-col  w-[100%-4px] rounded-2xl bac m-2 p-3 h-[80vh] overflow-hidden overflow-y-scroll scrollbar-hide  flex">
-        <div className="flex items-center mb-2" >
-          <div className="relative w-full">
-          <input disableUnderline onChange={fetchData}  className=" focus:outline-none  ml-2 w-[95%]  bg-black border-0 text-sm text-white placeholder-gray-400  h-8 px-4 pl-8 rounded-lg" type="text"  placeholder="Search Movies & TV Shows "/>
+      <div className="bg-[#f1f1fb] w-[100%-4px]   rounded-md m-2 p-4 h-[80vh] mt-24 overflow-hidden  scrollbar-hide lg:herolg justify-center items-center flex-col">
+        <div className="flex items-center mb-2 sticky top-0 z-40" >
+          <div className="relative w-full lg:w-[60%] ">
+          <input disableUnderline onChange={fetchData}  className=" focus:outline-none  ml-2 w-[95%]  bg-black border-0 text-sm text-white placeholder-gray-400  h-8 px-0 pl-8 rounded-lg" type="text"  placeholder="Search Movies & TV Shows "/>
           <SearchIcon className="absolute  h-5 w-5  top-2 left-4 text-white z-10" stroke-width="2.5"/></div>
-          <button onSubmit={handleSubmit} className="bg-white text-md ml-4 px-2 py-1 rounded-lg" type="submit">Search</button>
+          <button onSubmit={handleSubmit} className="bg-white text-md ml-2 px-2 py-1 rounded-lg" type="submit">Search</button>
         </div>
-        {value!=''?<MovieCollection results={searchMovies} title="Movies"/>:<div/>}
-        {value!=''?<ShowCollection results={searchShows} title="TV Shows"/>:<div/>}
+        {value!=''?<MovieCollection results={searchMovies} title="Movies"/>:null}
+        {value!=''?<ShowCollection results={searchShows} title="TV Shows"/>:null}
         
       </div>
       

@@ -7,10 +7,10 @@ import SideBar from '../../components/SideBar'
     const BASE_URL = "https://image.tmdb.org/t/p/w500";
     console.log(similarResult)
   return (
-    <div className="flex-col h-full w-full mt-24 lg:sidebarlg ">
+    <div className="flex-col h-full w-full lg:flex-row md:flex-row ">
         <SideBar/>
-        <div className="bg-[#f1f1fb]  flex-col  w-[100%-4px] rounded-2xl bac m-2 p-3 h-[80vh] overflow-hidden overflow-y-scroll scrollbar-hide  flex ">
-            <div className="flex justify-between min-w-[180px] min-h-[260px] md:min-w-[150px] md:min-h-[200px]">
+        <div className="bg-[#f1f1fb] w-[100%-4px]   rounded-md m-2 px-4 h-[80vh] mt-24 overflow-hidden overflow-y-scroll scrollbar-hide lg:herolg justify-center items-center flex-col">
+            <div className="flex justify-between mt-6 min-w-[180px] min-h-[260px] md:min-w-[150px] md:min-h-[200px]">
                 <Image src={`${BASE_URL}${result.poster_path||result.backdrop_path}`} width={180}
                     height={260}
                     objectFit="cover"

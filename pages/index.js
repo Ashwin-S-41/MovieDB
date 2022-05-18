@@ -14,13 +14,12 @@ export default function Home({popularMovies,popularShows,top_ratedMovies,top_rat
   {JSON.stringify(isActive)}
   
   return (
-    <div className="flex-col h-full w-full mt-24 lg:sidebarlg ">
+    <div className="flex-col h-full w-full  lg:flex-row md:flex-row ">
         <SideBar active="home"/>
 
-        <div className="bg-[#f1f1fb] w-[100%-4px]  space-x-4 rounded-md m-2 p-4 h-[80vh] overflow-hidden overflow-y-scroll scrollbar-hide  flex ">
-          <div className=" w-full flex-col items-center justify-center">
-           
-          <div className="flicker flex w-full justify-evenly space-x-4 bg-[#494953] p-1.5  rounded-2xl  ">
+        <div className="bg-[#f1f1fb] w-[100%-4px]   rounded-md m-2 px-4 h-[80vh] mt-24 overflow-hidden overflow-y-scroll scrollbar-hide lg:herolg justify-center items-center flex-col ">
+          <div className='sticky top-0 z-40 bg-[#f1f1fb] rounded-b-2xl pt-4  '>
+            <div className="flicker flex w-full justify-evenly space-x-4 sticky top-0 z-40 bg-[#494953] p-1.5  rounded-2xl  ">
                     <div onClick={() => setisActive(false)} className={`
                      lg:text-sm
                      md:text-sm
@@ -38,6 +37,10 @@ export default function Home({popularMovies,popularShows,top_ratedMovies,top_rat
                      </div>
                     
               </div>
+          </div>
+          <div className="flicker w-full  ml-0 flex-col items-center justify-center">
+           
+          
   
     
           <Banner results={trending} />
@@ -149,44 +152,3 @@ export async function getServerSideProps() {
   }
 
   //https://api.themoviedb.org/3/discover/tv?api_key=${process.env.API_KEY}&language=en-US&primary_release_year=2024&include_adult=false
-
-// export async function getServerSideProps() {
-  
-
-//   const [
-//     popularMoviesRes,
-//     popularShowsRes,
-//     top_ratedMoviesRes,
-//     top_ratedShowsRes,
-//   ] = await Promise.all([
-//     fetch(
-//       `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
-//     ),
-//     fetch(
-//       `https://api.themoviedb.org/3/tv/popular?api_key=${process.env.API_KEY}&language=en-US&page=1`
-//     ),
-//     fetch(
-//       `https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=1`
-//     ),
-//     fetch(
-//       `https://api.themoviedb.org/3/tv/top_rated?api_key=${process.env.API_KEY}&language=en-US&page=1`
-//     ),
-//   ]);
-//   const [popularMovies, popularShows, top_ratedMovies, top_ratedShows] =
-//     await Promise.all([
-//       popularMoviesRes.json(),
-//       popularShowsRes.json(),
-//       top_ratedMoviesRes.json(),
-//       top_ratedShowsRes.json(),
-//     ]);
-
-//   return {
-//     props: {
-      
-//       popularMovies: popularMovies.results,
-//       popularShows: popularShows.results,
-//       top_ratedMovies: top_ratedMovies.results,
-//       top_ratedShows: top_ratedShows.results,
-//     },
-//   };
-// }
