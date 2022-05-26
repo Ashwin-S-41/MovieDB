@@ -10,7 +10,7 @@ import SideBar from "../components/SideBar";
 
 export default function Home({popularMovies,popularShows,top_ratedMovies,top_ratedShows,latestMovies,latestShows,trending}) {
   const [isActive, setisActive] = useState(false);
-  console.log(latestMovies)
+  
   {JSON.stringify(isActive)}
   
   return (
@@ -18,12 +18,13 @@ export default function Home({popularMovies,popularShows,top_ratedMovies,top_rat
         <SideBar active="home"/>
 
         <div className="bg-[#f1f1fb] w-[100%-4px]   rounded-md m-2 px-4 h-[80vh] mt-24 overflow-hidden overflow-y-scroll scrollbar-hide lg:herolg justify-center items-center flex-col ">
-          <div className='sticky top-0 z-40 bg-[#f1f1fb] rounded-b-2xl pt-4  '>
-            <div className="flicker flex w-full justify-evenly space-x-4 sticky top-0 z-40 bg-[#494953] p-1.5  rounded-2xl  ">
+          <div className=''>
+          <div className='sticky top-0 z-40 bg-[#f1f1fb] md:bg-transparent  rounded-b-2xl pt-4  '>
+            <div className="flicker flex mx-auto shadow-xl shadow-black/20 md:max-w-[500px] justify-evenly space-x-4 sticky top-0 z-40 bg-[#494953] p-1.5  rounded-2xl  ">
                     <div onClick={() => setisActive(false)} className={`
                      lg:text-sm
                      md:text-sm
-                     text-sm flex-1 p-1 w-full text-center transition-all ease-in-out  cursor-pointer rounded-xl 
+                     text-sm flex-1 p-1 w-fit text-center transition-all ease-in-out  cursor-pointer rounded-xl 
                      ${isActive?' text-white':'text-black bg-[#f1f1fb]'}`}
                      >
                        Movies
@@ -73,6 +74,8 @@ export default function Home({popularMovies,popularShows,top_ratedMovies,top_rat
           
           
           </div>
+
+        </div>
       </div>
 
     </div>

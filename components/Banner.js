@@ -9,7 +9,7 @@ const Banner = ({results}) => {
   return (
     <div className="my-4">
     <h2 className="font-semibold mb-2">Trending</h2>
-    <div className="w-full lg:bg-black rounded-xl overflow-hidden ">
+    <div className="w-full  rounded-xl overflow-hidden ">
       
 
       <Carousel
@@ -19,9 +19,9 @@ const Banner = ({results}) => {
         showIndicators={false}
         showThumbs={false}
         showArrows={true}
-        interval={3000}
+        interval={4000}
         
-        className="rounded-2xl"
+        className="rounded-2xl w-fit"
       >
         {results.map((result) => (
           <div onClick={() => router.push(`/${result.media_type}/${result.id}`)} key={result.id} className=" relative rounded-2xl h-46 md:h-96 ">
@@ -30,11 +30,11 @@ const Banner = ({results}) => {
             <Image src={`${BASE_URL}${result.backdrop_path||result.poster_path}`} width={1080}
             height={608}
             alt={result.title}
-            loading="eager"
+            priority="true"
             objectFit="cover"
             className="rounded-xl   overflow-hidden" />
               
-             <div className="flicker cursor-pointer flicker text-center z-10 backface text-xs lg:text-lg px-3 py-2 rounded-xl w-fit absolute text-yellow-100 bottom-[11%] !-translate-x-1/2 left-[50%] 
+             <div className="flicker  cursor-pointer flicker  text-center z-10 backface text-xs lg:text-lg px-3 py-2 rounded-xl w-fit absolute text-yellow-100 bottom-[11%] !-translate-x-1/2 left-[50%] 
                 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-90 mr-2  border-[0px] border-gray-400
              ">{result.name||result.original_name||result.title||result.original_title}</div>
           </div>
